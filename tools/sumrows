@@ -1,0 +1,12 @@
+#!/usr/bin/gawk -f
+#
+# Calculate total number of inserted rows from out/log.csv.
+#
+# Usage: sumrows <file>
+#
+# Daniel Weibel <danielmartin.weibel@polimi.it> December 2015
+#------------------------------------------------------------------------------#
+
+BEGIN { FS = "," }
+      { total += $2 }
+END   { print total}

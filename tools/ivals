@@ -1,0 +1,18 @@
+#!/usr/bin/gawk -f
+#
+# Calculate intervals in seconds between the timestamps of out/log.csv. The
+# timestamps have the form 'YYYY-MM-DD HH:MM:SS' and are in the first column
+# of out/log.csv.
+#
+# Usage: ivals <file>
+#
+# Daniel Weibel <danielmartin.weibel@polimi.it> December 2015
+#------------------------------------------------------------------------------#
+
+BEGIN { FS = "," }
+      {
+        gsub(/-|:/, " ", $1)  # Create "YYYY MM DD HH MM SS" and save in $1
+        curr = mktime($1)     # Convert date string to UNIX timestamp in seconds
+        if (prev != "") print curr - prev
+        prev = curr
+      }

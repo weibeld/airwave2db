@@ -1,0 +1,15 @@
+# Crontab for running script 'run' every 5 minutes (01, 06, 11, 16, etc.).
+#
+# Cron usage:
+# - Every user may have one crontab file in /var/spool/cron/crontabs
+# - Each line of a crontab file specifies a single cron task
+# - List crontab file of current user: crontab -l
+# - Edit crontab file of current user: crontab -e
+# - Installing new crontab file:       crontab <file>
+# - The working directory for a cron task is HOME of the user it belongs to
+#
+# This file is just for information (original is in /var/spool/cron/crontabs).
+#
+# Daniel Weibel <danielmartin.weibel@polimi.it> December 2015
+#------------------------------------------------------------------------------#
+1,6,11,16,21,26,31,36,41,46,51,56 * * * * aw2db/run

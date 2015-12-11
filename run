@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#
+# Main script: download data from Airwave and insert it in database
+#
+# For each access point, the "connected devices" CSV file is downloaded and
+# converted to a format that matches the database schema. All these converted
+# CSV files are concatenated to one big CSV file (last_update.csv), which is
+# finally loaded into the database.
+#
+# After each run, the script prints the current timestamp and the number of
+# inserted rows to 'out/log.csv''.
+#
+# Usage: run
+#
+# Daniel Weibel <danielmartin.weibel@polimi.it> Nov. 2015 - Dec. 2015 
+#------------------------------------------------------------------------------#
+
+set -e
+
+cd /home/common/aw2db
+source in/func.sh
+mkdir -p out
+
+cookie=$(download_cookie)
+time=$(date '+%Y-%m-%d %H:%M:%S')
+out=out/last_update.csv
+>"$out"
+
+for ap_id in $(cat in/ap_ids); do
+  download_csv "$ap_id" "$cookie" |
+  convert_csv "$ap_id" "$time" >>"$out"
+done
+
+save_csv_to_db "$out"
+
+echo "$time,$(cat "$out" | wc -l)" >>out/log.csv
