@@ -45,8 +45,8 @@ convert_csv() {
 # into the database.
 save_csv_to_db() {
   local csv=$1
-  local mysql_un=common
-  local mysql_pw=common
+  local mysql_un=airwave_updater
+  local mysql_pw=airwave_updater
   local db=airwave
   local tbl=connected_devices
   local cmd="load data local infile '$csv' into table $tbl fields terminated by ',';"
