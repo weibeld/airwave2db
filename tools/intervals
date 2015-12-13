@@ -4,7 +4,7 @@
 # timestamps have the form 'YYYY-MM-DD HH:MM:SS' and are in the first column
 # of out/log.csv.
 #
-# Usage: ivals <file>
+# Usage: intervals <file>
 #
 # Daniel Weibel <danielmartin.weibel@polimi.it> December 2015
 #------------------------------------------------------------------------------#
