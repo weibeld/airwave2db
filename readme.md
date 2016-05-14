@@ -40,7 +40,7 @@ Installation
 - MySQL
     - `sudo apt-get install mysql-server`
 - MySQL database `airwave` with table `connected_devices`
-    - See Section [Database Setup](#Database-Setup)
+    - See Section [Database Setup](#database-setup)
 
 ### Installation
 
