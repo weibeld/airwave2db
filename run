@@ -1,36 +1,40 @@
 #!/usr/bin/env bash
 #
-# Main script: download data from Airwave and insert it in database
+# This is the main script, it downloads the current "connected devices" data
+# from Airwave and inserts it in database.
 #
-# For each access point, the "connected devices" CSV file is downloaded and
-# converted to a format that matches the database schema. All these converted
-# CSV files are concatenated to one big CSV file (last_update.csv), which is
-# finally loaded into the database.
+# This script is supposed to be executed periodically by a cron task.
 #
-# After each run, the script prints the current timestamp and the number of
-# inserted rows to 'out/log.csv''.
+# Procedure: for each access point, download the "connected devices" CSV file,
+# do some conversions on the columns, and concatenate it to the previously
+# downloaded files. Finally, the resulting CSV file is loaded into the DB.
+#
+# Note: this script assumes that the current working directory is the script's
+# own enclosing directory (this is ensured by the corresponding cron task).
 #
 # Usage: run
 #
-# Daniel Weibel <danielmartin.weibel@polimi.it> Nov. 2015 - Dec. 2015 
+# Daniel Weibel <danielmartin.weibel@polimi.it> Nov. 2015 - Apr. 2016 
 #------------------------------------------------------------------------------#
 
 set -e
 
-cd /home/common/aw2db
-source in/func.sh
-mkdir -p out
+aux_dir=aux
+out_dir=out
+
+source "$aux_dir"/func.sh
+mkdir -p "$out_dir"
 
 cookie=$(download_cookie)
 time=$(date '+%Y-%m-%d %H:%M:%S')
-out=out/last_update.csv
->"$out"
+data="$out_dir"/last_download.csv
+>"$data"
 
-for ap_id in $(cat in/ap_ids); do
+for ap_id in $(cat "$aux_dir"/ap_ids); do
   download_csv "$ap_id" "$cookie" |
-  convert_csv "$ap_id" "$time" >>"$out"
+  convert_csv "$ap_id" "$time" >>"$data"
 done
 
-save_csv_to_db "$out"
+save_csv_to_db "$data"
 
-echo "$time,$(cat "$out" | wc -l)" >>out/log.csv
+echo "$time,$(cat "$data" | wc -l)" >>"$out_dir"/log.csv

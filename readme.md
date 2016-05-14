@@ -1,12 +1,9 @@
 Airwave2DB
 ==========
 
-This tool periodically (every 5 minutes) downloads the *connected devices* data
-of each access point (AP) from Airwave, and inserts it in the local MySQL database
-`airwave` (table `connected_devices`).
-
-Each row of the downloaded data corresponds to a *connected device* of a
-specific AP.
+This tool periodically downloads the *connected devices* data of each access
+point from Airwave and appends it to table `connected_devices` in local MySQL
+database `airwave`
 
 
 Organisation
@@ -15,19 +12,15 @@ Organisation
 ~~~
 aw2db
 |
-|__run      # Main script: download Airwave data and insert it into database
-|           # This script is run every 5 minutes by a cron task
+|__run      # Main script, executed periodically by a cron task
 |
-|__in       # Helper code files, accessed by 'run'
-|  |_ ...
+|__aux/     # Contains helper code files used by 'run'
 |
-|__out      # Location of all output files of 'run'
-|  |__...
+|__out/     # Created by 'run', contains all output files
 |
-|__tools    # Miscellaneous user tools (e.g. for analysing 'out/log.csv')
-|  |__...
+|__bin/     # Contains several user tools
 |
-|__crontab  # Copy of crontab file that launches 'run' every 5 minutes
+|__crontab  # Example of crontab file for executing 'run' every 5 minutes
 ~~~
 
 
@@ -36,17 +29,18 @@ Installation
 
 ### Prerequisites
 
-- Latest gawk version installed
-    - http://ftp.gnu.org/gnu/gawk/
-    - `./configure; make; make install`
-- MySQL database `airwave` with table `conncted_devices` set up
+- gawk
+    - `sudo apt-get install gawk`
+- MySQL
+    - `sudo apt-get install mysql-server`
+- MySQL database `airwave` with table `connected_devices`
 
 
 ### Installation
 
-1. `git clone https://github.com/weibeld/aw2db.git` from within `$HOME` (this
-   location is important)
-2. In `run`, adapt path in first code line to your `$HOME/aw2db`
-3. In `in/func.sh`, verify Airwave credentials (function `get_cookie()`)
-4. In `in/func.sh`, verify database credentials (function `save_csv_to_db()`)
+1. `git clone https://github.com/weibeld/aw2db.git`
+2. In `crontab` adapt path to the location of `aw2db` directory
+3. In `aux/func.sh`, adapt `*_un` and `*_pw` variables in functions
+`get_cookie` and `save_csv_to_db` to credentials of Airwave and database,
+respectively.
 5. Install crontab: `crontab ./crontab`
