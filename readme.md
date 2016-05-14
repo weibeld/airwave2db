@@ -45,9 +45,9 @@ Installation
 ### Installation
 
 1. `git clone https://github.com/weibeld/aw2db.git`
-2. In `crontab` adapt path to the location of `aw2db` directory
+2. In `crontab` adapt path to the actual location of the `aw2db` directory
 3. In `aux/func.sh`, adapt `*_un` and `*_pw` variables in functions
-`get_cookie` and `save_csv_to_db` to credentials of Airwave and database,
+`get_cookie` and `save_csv_to_db` to actual credentials of Airwave and database,
 respectively.
 5. Install crontab: `crontab ./crontab`
 
