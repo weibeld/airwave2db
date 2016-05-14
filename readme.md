@@ -40,8 +40,7 @@ Installation
 - MySQL
     - `sudo apt-get install mysql-server`
 - MySQL database `airwave` with table `connected_devices`
-    - See 
-
+    - See Section [Database Setup](#Database-Setup)
 
 ### Installation
 
@@ -53,13 +52,16 @@ respectively.
 5. Install crontab: `crontab ./crontab`
 
 
-MySQL Database Setup
---------------------
+Database Setup
+--------------
+
+Below are the MySQL statements to create the database `airwave` and the table
+`connected_devices` with the required columns.
 
 ### Create database
 
 ~~~sql
-mysql> create database airwave;
+create database airwave;
 ~~~
 
 ### Create table
