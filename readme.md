@@ -29,11 +29,18 @@ Installation
 
 ### Prerequisites
 
-- gawk
-    - `sudo apt-get install gawk`
+- gawk >= 4.1.0 (must support `-i` option)
+    - Try:
+        - `sudo apt-get install gawk`
+    - If this installs an earlier version, download and install manually:
+        - <http://ftp.gnu.org/gnu/gawk/>
+        - `./configure; make; sudo make install`
+- curl
+    - `sudo apt-get install curl`
 - MySQL
     - `sudo apt-get install mysql-server`
 - MySQL database `airwave` with table `connected_devices`
+    - See 
 
 
 ### Installation
@@ -44,3 +51,37 @@ Installation
 `get_cookie` and `save_csv_to_db` to credentials of Airwave and database,
 respectively.
 5. Install crontab: `crontab ./crontab`
+
+
+MySQL Database Setup
+--------------------
+
+### Create database
+
+~~~sql
+mysql> create database airwave;
+~~~
+
+### Create table
+
+~~~sql
+create table connected_devices (
+ap_id                 int,
+device_mac            char,
+timestamp             timestamp,
+sig_quality           int,
+ssid                  varchar(255),
+vlan                  int,
+interface             varchar(255),
+conn_mode             varchar(255),
+chipset               varchar(255),
+cipher                varchar(255),
+auth                  varchar(255),
+goodput               float,
+speed                 float,
+association_timestamp timestamp,
+duration              int,
+user_name             varchar(255),
+bw_usage              float
+);
+~~~
