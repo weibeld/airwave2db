@@ -10,9 +10,10 @@
 #   - The working directory for a cron task is HOME of the crontab user
 #
 # Usage:
-#   - Adapt path of aw2db directory below
+#   - Add locations of gawk, curl, and mysql to PATH (default: /usr/bin:/bin)
+#   - Adapt path of aw2db directory in 'cd' statement
 #   - Install this crontab file: $ crontab ./crontab
 #
 # Daniel Weibel <danielmartin.weibel@polimi.it> Dec. 2015 - May 2016
 #------------------------------------------------------------------------------#
-1,6,11,16,21,26,31,36,41,46,51,56 * * * * cd /home/antlab/aw2db; ./run
+1,6,11,16,21,26,31,36,41,46,51,56 * * * * PATH=$PATH:/usr/local/bin; cd /home/antlab/aw2db; ./run &>cron_task_error.txt
