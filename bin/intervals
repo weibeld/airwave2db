@@ -1,4 +1,4 @@
-#!/usr/bin/gawk -f
+#!/usr/local/bin/gawk -f
 #
 # Calculate intervals in seconds between the timestamps of out/log.csv. The
 # timestamps have the form 'YYYY-MM-DD HH:MM:SS' and are in the first column

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#
+# Log in to the 'airwave' MySQL database.
+#
+# Daniel Weibel <danielmartin.weibel@polimi.it> May 2016
+#------------------------------------------------------------------------------#
+
+mysql -u antlab -pantlab airwave

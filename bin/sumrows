@@ -1,4 +1,4 @@
-#!/usr/bin/gawk -f
+#!/usr/local/bin/gawk -f
 #
 # Calculate total number of inserted rows from out/log.csv.
 #
