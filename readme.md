@@ -32,7 +32,7 @@ Installation
 - gawk >= 4.1.0 (must support `-i` option)
     - Try:
         - `sudo apt-get install gawk`
-    - If this installs an earlier version, download and install manually:
+    - If this installs an older version than 4.1.0, download and install manually:
         - <http://ftp.gnu.org/gnu/gawk/>
         - `./configure; make; sudo make install`
 - curl
@@ -45,11 +45,11 @@ Installation
 ### Installation
 
 1. `git clone https://github.com/weibeld/aw2db.git`
-2. In `crontab`, set `PATH` to include locations of `gawk`, `curl`, and `mysql`,
-and adapt path of `aw2db` in `cd` statement
+2. In `crontab`, make sure `PATH` contains locations of `gawk`, `curl`, and `mysql`,
+and adapt path to `aw2db` in `cd` statement.
 3. In `aux/func.sh`, adapt `*_un` and `*_pw` variables in functions
 `get_cookie` and `save_csv_to_db` to actual credentials of Airwave and database,
-respectively
+respectively.
 5. Install crontab: `crontab ./crontab`
 
 

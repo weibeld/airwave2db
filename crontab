@@ -8,6 +8,7 @@
 #   - Delete crontab file:      crontab -r
 #   - Install new crontab file: crontab <file>
 #   - The working directory for a cron task is HOME of the crontab user
+#   - A cron log can be found in the file /var/log/syslog
 #
 # Usage:
 #   - Add locations of gawk, curl, and mysql to PATH (default: /usr/bin:/bin)
@@ -16,4 +17,4 @@
 #
 # Daniel Weibel <danielmartin.weibel@polimi.it> Dec. 2015 - May 2016
 #------------------------------------------------------------------------------#
-1,6,11,16,21,26,31,36,41,46,51,56 * * * * PATH=$PATH:/usr/local/bin; cd /home/antlab/aw2db; ./run &>cron_task_error.txt
+1,6,11,16,21,26,31,36,41,46,51,56 * * * * PATH=$PATH:/usr/local/bin; cd /home/antlab/aw2db; ./run

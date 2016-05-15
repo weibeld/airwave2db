@@ -1,6 +1,6 @@
 #!/usr/local/bin/gawk -f
 #
-# Calculate total number of inserted rows from out/log.csv.
+# Calculate total number of inserted rows from the log file (log.csv).
 #
 # Usage: sumrows <file>
 #
