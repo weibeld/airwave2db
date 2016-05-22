@@ -7,12 +7,14 @@
 #------------------------------------------------------------------------------#
 
 # Authenticate to Airwave in order to get a cookie that can be used for future
-# connections. Writes the cookie string to stdout.
+# connections. Note on curl options: "-s" silent, "-c -" write cookie to stdout,
+# "-k" disable SSL certifiate verification. Writes the cookie to stdout.
 download_cookie() {
   local airwave_un=user-deib
   local airwave_pw=Loo5ou1m
   curl -s   \
        -c - \
+       -k   \
        -d credential_0="$airwave_un" \
        -d credential_1="$airwave_pw" \
        -d login="Log In" \
@@ -27,6 +29,7 @@ download_csv() {
   local ap_id=$1
   local cookie=$2
   curl -s \
+       -k \
        -H "Cookie: Mercury::Handler::AuthCookieHandler_AMPAuth=$cookie" \
        --compressed \
        "https://airwave.polimi.it/api/csv_export.csv?fv_id=6&ap_id=$ap_id&page_length=500&list=client_of_device"

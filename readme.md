@@ -51,6 +51,8 @@ and adapt path to `aw2db` in `cd` statement.
 `get_cookie` and `save_csv_to_db` to actual credentials of Airwave and database,
 respectively.
 5. Install crontab: `crontab ./crontab`
+6. Disable "suspend" or "sleep" mode of computer (otherwise the cron task might
+not be executed)
 
 
 Database Setup
