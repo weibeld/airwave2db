@@ -72,7 +72,7 @@ create database airwave;
 ~~~sql
 create table connected_devices (
 ap_id                 int,
-device_mac            char,
+device_mac            varchar(255),
 timestamp             timestamp,
 sig_quality           int,
 ssid                  varchar(255),
