@@ -50,8 +50,8 @@ and adapt path to `aw2db` in `cd` statement.
 3. In `aux/func.sh`, adapt `*_un` and `*_pw` variables in functions
 `get_cookie` and `save_csv_to_db` to actual credentials of Airwave and database,
 respectively.
-5. Install crontab: `crontab ./crontab`
-6. Disable "suspend" or "sleep" mode of computer (otherwise the cron task might
+4. Install crontab: `crontab ./crontab`
+5. Disable "suspend" or "sleep" mode of computer (otherwise the cron task might
 not be executed)
 
 
